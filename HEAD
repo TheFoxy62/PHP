@@ -1,0 +1,13 @@
+# méthodes HTTP
+
+LECTURE : 
+
+HEAD demande de l'entete HTTP uniquement
+GET afficher des données
+
+ECRITURE:
+
+POST envoyer des données / création de données 
+PUT modifier des données ( intégralement )
+PATCH modifier des données
+DELETE supprimer des données
