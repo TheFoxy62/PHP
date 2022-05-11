@@ -1,7 +1,9 @@
 <?php
 
-header('foo, baz');
+header("Foo: baz");
 
-//redirection temporaire
-$url ='/hello.php';
+// redirection temporaire
+$url = '/hello.php';
 header("Location: {$url}", 302);
+
+?>
