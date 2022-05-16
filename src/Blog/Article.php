@@ -17,7 +17,7 @@
 // - deleted_at
 // - deleted_by
 
-namespace Blog;
+namespace App\Blog;
 
 class Article
 {
@@ -31,7 +31,7 @@ class Article
         $this->id = $id;
         $this->title = $title;
         $this->body = $body;
-        $this->category = $category;
+        $this->setCategory($category);
     }
 
     /**
@@ -99,7 +99,8 @@ class Article
     {
         $this->category = $category;
 
+        $category->addArticle($this);
+
         return $this;
     }
 }
-?>

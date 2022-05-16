@@ -1,7 +1,7 @@
 <?php
 
-Use Blog\Article;
-Use Blog\Category;
+Use App\Blog\Article;
+Use App\Blog\Category;
 
 require __DIR__.'/vendor/autoload.php';
 
@@ -22,10 +22,17 @@ dump($articles);
 foreach ($articles as $article) {
     echo "title: {$article->getTitle()}";
     echo '<br>';
-    echo "category: {$article->getCategory()->getName()}";
-    echo '<br>';
+
+    // echo "category: {$article->getCategory()->getName()}";
+    // echo '<br>';
+
     // fait la même chose que la ligne 24
-    // $category = $article->getCategory();
-    // echo "category: {$category->getName()}";
+    $category = $article->getCategory();
+    echo "category: {$category->getName()}";
+    echo '<br>';
+
+    foreach ($category->getArticles() as $article) {
+        echo "same category title: {$article->getTitle()}";
+        echo '<br>';
+    }
 }
-?>
