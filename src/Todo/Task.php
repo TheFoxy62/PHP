@@ -9,13 +9,15 @@ class Task
     private $limitDate;
     private $status;
     // private $responsible;
+    private $tags;
 
-    public function __construct($id, $title, $limitDate, $status)
+    public function __construct($id, $title, $limitDate, $status, $tags = null)
     {
         $this->id = $id;
         $this->title = $title;
         $this->limitDate = $limitDate;
         $this->status = $status;
+        $this->tags = $tags ?? [];
     }
 
     /**
@@ -82,6 +84,37 @@ class Task
     public function setStatus($status)
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of tags
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    /**
+     * Get the value of tags
+     */
+    public function addTags($tag)
+    {
+        if(!in_array($tag, $this->tags)){
+            $this->tags[] = $tags;
+        }
+        return $this;
+    }
+    public function removeTag($tag)
+    {
+        $index = array_search($tag, $this->tags);
+
+        if ($index !== false);{
+
+            // Le tag a été trouvé
+        array_splice($this->tags, $index, 1);
+        }
 
         return $this;
     }
