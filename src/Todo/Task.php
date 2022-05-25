@@ -1,34 +1,31 @@
-<?php declare(strict_types = 1);
+<?php
 
 namespace App\Todo;
 
 use DateTime;
-use App\Todo\Tags;
-use App\Todo\User;
 
 class Task
 {
     private $id;
     private $title;
-    private $limiteDate;
+    private $limitDate;
     private $done;
-    private $person_in_charge;
     private $tags;
+    // private $responsible;
 
-    public function __construct(int $id,string $title,DateTime $limiteDate,bool $done,array $person_in_charge = [],array $tags = [])
+    public function __construct($id, $title, DateTime $limitDate, $done, $tags = [])
     {
         $this->id = $id;
         $this->title = $title;
-        $this->limiteDate = $limiteDate;
+        $this->limitDate = $limitDate;
         $this->done = $done;
-        $this->person_in_charge = $person_in_charge;
         $this->tags = $tags;
     }
 
     /**
      * Get the value of id
      */ 
-    public function getId(): int
+    public function getId()
     {
         return $this->id;
     }
@@ -36,7 +33,7 @@ class Task
     /**
      * Get the value of title
      */ 
-    public function getTitle(): string
+    public function getTitle()
     {
         return $this->title;
     }
@@ -46,7 +43,7 @@ class Task
      *
      * @return  self
      */ 
-    public function setTitle($title): self
+    public function setTitle($title)
     {
         $this->title = $title;
 
@@ -54,21 +51,21 @@ class Task
     }
 
     /**
-     * Get the value of limite_date
+     * Get the value of limitDate
      */ 
-    public function getLimiteDate(): DateTime
+    public function getLimitDate(): DateTime
     {
-        return $this->limiteDate;
+        return $this->limitDate;
     }
 
     /**
-     * Set the value of limite_date
+     * Set the value of limitDate
      *
      * @return  self
      */ 
-    public function setLimiteDate(DateTime $limiteDate): self
+    public function setLimitDate(DateTime $limitDate): self
     {
-        $this->limiteDate = $limiteDate;
+        $this->limitDate = $limitDate;
 
         return $this;
     }
@@ -76,7 +73,7 @@ class Task
     /**
      * Get the value of done
      */ 
-    public function getDone(): bool
+    public function getDone()
     {
         return $this->done;
     }
@@ -86,7 +83,7 @@ class Task
      *
      * @return  self
      */ 
-    public function setDone(bool $done): self
+    public function setDone($done)
     {
         $this->done = $done;
 
@@ -94,47 +91,9 @@ class Task
     }
 
     /**
-     * Get the value of person_in_charge
-     */ 
-    public function getPerson_in_charge(): array
-    {
-        return $this->person_in_charge;
-    }
-
-    /**
-     * Set the value of person_in_charge
-     *
-     * @return  self
-     */ 
-    public function setPerson_in_charge(User $person_in_charge): self
-    {
-        $this->person_in_charge = $person_in_charge;
-
-        return $this;
-    }
-
-    public function addPerson_in_charge(User $Person_in_charge): self
-    {
-        if (!in_array($tag, $this->tags)){
-            $this->Person_in_charge[] = $Person_in_charge;
-        }
-
-        return $this;
-    }
-
-    public function removePerson_in_charge(User $Person_in_charge): self
-    {
-        $index = array_search($Person_in_charge, $this->Person_in_charge);
-
-        if ($index !== false){
-            array_splice($this->Person_in_charge, $index, 1);
-        }
-        return $this;
-    }
-    /**
      * Get the value of tags
-     */
-    public function getTags(): array
+     */ 
+    public function getTags()
     {
         return $this->tags;
     }
@@ -144,33 +103,34 @@ class Task
      *
      * @return  self
      */ 
-    public function setTags(array $tags): self
+    public function setTags($tags)
     {
         $this->tags = $tags;
 
         return $this;
     }
 
-    /**
-     * Get the value of tags
-     */
-    public function addTags($tag): self
+    public function addTag($tag)
     {
-        if(!in_array($tag, $this->tags)){
-            $this->tags[] = $tags;
+        // si le tag n'est pas déjà présent dans la liste, on l'ajoute à la liste
+        if (!in_array($tag, $this->tags)) {
+            $this->tags[] = $tag;
         }
+
         return $this;
     }
-    public function removeTag($tag): self
+
+    public function removeTag($tag)
     {
         $index = array_search($tag, $this->tags);
 
-        if ($index !== false);{
-
-            // Le tag a été trouvé
-        array_splice($this->tags, $index, 1);
+        if ($index !== false) {
+            // le tag a été trouvé
+            // suppression du tag trouvé
+            array_splice($this->tags, $index, 1);
         }
 
         return $this;
     }
 }
+?>

@@ -1,32 +1,13 @@
 <?php declare(strict_types = 1);
 
-// Category
-// - id
-// - name / titre
-// - description
-// - image
-// - created_at
-// - created_by
-// - edited_at
-// - edited_by
-// - deleted_at
-// - deleted_by
+namespace App\Blog\Traits;
 
-namespace App\Blog;
+use App\Blog\Article;
 
-use App\Blog\ANamedObject;
-use App\Blog\Articlable;
-
-class Category extends ANamedObject
+trait Articable
 {
     private $articles;
-
-    public function __construct(int $id, string $name, ?string $description, array $articles = [])
-    {
-        parent::__construct($id, $name, $description);
-        $this->articles = $articles;
-    }
-
+    
     /**
      * Get the value of articles
      */ 
@@ -40,7 +21,7 @@ class Category extends ANamedObject
      *
      * @return  self
      */ 
-    public function setArticles(array $articles): self
+    public function setArticles($articles): self
     {
         $this->articles = $articles;
 
@@ -67,3 +48,4 @@ class Category extends ANamedObject
         return $this;
     }
 }
+?>
